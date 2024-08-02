@@ -2,7 +2,6 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class HealthService {
-    constructor() { }
     
     async health() {
         return {
