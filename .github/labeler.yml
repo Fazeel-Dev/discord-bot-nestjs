@@ -1,40 +1,57 @@
 # .github/labeler.yml
 
 # Apply a label for changes to the documentation
-documentation:
-  - 'docs/**/*'
-  - '*.md'
+Documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'docs/**/*'
+      - '*.md'
 
 # Apply a label for changes to the core NestJS application code
-core:
-  - 'src/app.module.ts'
-  - 'src/main.ts'
-  
-modules:
-  - 'src/**/*.module.ts'
+Core:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/app.module.ts'
+      - 'src/main.ts'
+
+# Apply a label for changes to the modules
+Modules:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/**/*.module.ts'
 
 # Apply a label for changes to the DTOs (Data Transfer Objects)
-dtos:
-  - 'src/**/dto/*.dto.ts'
+DTOs:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/**/dto/*.dto.ts'
 
 # Apply a label for changes to the configuration files
-configuration:
-  - '.github/**/*'
-  - 'config/**/*'
-  - '*.yml'
-  - '*.yaml'
+Configuration:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
+      - 'config/**/*'
+      - '*.yml'
+      - '*.yaml'
 
 # Apply a label for changes to the tests
-tests:
-  - 'test/**/*'
-  - 'src/**/*.spec.ts'
+Tests:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'test/**/*'
+      - 'src/**/*.spec.ts'
 
 # Apply a label for changes to the CI/CD workflows
-ci-cd:
-  - '.github/workflows/**/*'
+CI-CD:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/workflows/**/*'
 
 # Apply a label for changes to the database scripts
-database:
-  - 'src/db/**/*'
-  - 'migrations/**/*'
-  - 'seeders/**/*'
+Database:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/db/**/*'
+      - 'migrations/**/*'
+      - 'seeders/**/*'
