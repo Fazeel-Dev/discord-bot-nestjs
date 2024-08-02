@@ -1,0 +1,26 @@
+services:
+  app:
+    container_name: discord-bot-nestjs
+    build: .
+    image: nodejs:20-alpine
+    ports:
+      - '${PORT}:${PORT}'
+    networks:
+      - discord-bot
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+      - LOGGER_LEVEL=${LOGGER_LEVEL}
+      - LOG_PRETTY_PRINT=${LOG_PRETTY_PRINT}
+      - SWAGGER_SERVER=${SWAGGER_SERVER}
+      - SWAGGER_USER=${SWAGGER_USER}
+      - SWAGGER_PASSWORD=${SWAGGER_PASSWORD}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - GUILD_ID=${GUILD_ID}
+      - CHANNEL_ID=${CHANNEL_ID}
+      
+    restart: on-failure
+    command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start:prod; else npm run start:dev; fi"
+
+networks:
+  discord-bot:
