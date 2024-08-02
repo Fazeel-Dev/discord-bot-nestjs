@@ -12,5 +12,36 @@ jobs:
     - uses: actions/first-interaction@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Thanks, We will look into is asap"
-        pr-message: "Thanks for the PR. We will review it asap"
+        issue-message: >
+          Hello @${{ github.event.issue.user.login }},
+
+          Thank you for creating a new issue in our repository. To help us understand and address your report or request effectively, please follow the guidelines below:
+
+          ### For Bug Reports:
+          1. **Description**: Provide a clear and concise description of the issue.
+          2. **Steps to Reproduce**: List the steps required to reproduce the issue.
+          3. **Expected Behavior**: Describe what you expected to happen.
+          4. **Actual Behavior**: Describe what actually happened.
+          5. **Screenshots/Logs**: Attach any relevant screenshots or logs that demonstrate the issue.
+          6. **Environment Details**: Include information about your setup, such as the operating system, browser, and version of the software.
+
+          ### For Feature Requests:
+          1. **Feature Description**: Provide a detailed description of the feature you would like to see.
+          2. **Use Case**: Explain the problem that this feature would solve or how it would benefit you and others.
+          3. **Examples**: If possible, provide examples or references to similar features in other projects or applications.
+          4. **Additional Context**: Include any other context or information that might be helpful.
+
+          Your detailed input will help us prioritize and address the issue more efficiently. We appreciate your cooperation and contribution to improving our project.
+
+          Thank you!
+
+          Best regards,
+          Muhamed Fazeel
+
+        pr-message: >
+          Hello @${{ github.event.pull_request.user.login }},
+
+          Thank you for your pull request. We appreciate your contribution to improving our project. Our team will review your changes as soon as possible.
+
+          Best regards,
+          Muhamed Fazeel
