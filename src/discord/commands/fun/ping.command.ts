@@ -1,12 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { CommandInteraction } from 'discord.js';
-import { Command } from 'src/discord/decorators/command.decorator';
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+import { CommandInterface } from 'src/interfaces/command.interface';
 
-@Injectable()
-export class PingCommand {
-  @Command('ping')
-  async handle(interaction: CommandInteraction) {
-    console.log(interaction);
+export const ping: CommandInterface = {
+  data: new SlashCommandBuilder()
+    .setName('ping')
+    .setDescription('Replies with Pong!'),
+  async execute(interaction: ChatInputCommandInteraction) {
     await interaction.reply('Pong!');
-  }
-}
+  },
+};
