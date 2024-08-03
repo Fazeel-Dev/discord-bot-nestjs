@@ -5,4 +5,4 @@ import { CommandsProvider } from './commands.provider';
   providers: [CommandsProvider],
   exports: [CommandsProvider],
 })
-export class CommandsModule { }
+export class CommandsModule {}

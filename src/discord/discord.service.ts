@@ -61,7 +61,9 @@ export class DiscordService implements OnModuleInit {
   private getCommandDefinitions() {
     const commands = [];
     // Collect command definitions from injected command classes
-    const commandInstances = this.commandsProvider.getCommands().map(Command => new Command());
+    const commandInstances = this.commandsProvider
+      .getCommands()
+      .map((Command) => new Command());
     commandInstances.forEach((instance) => {
       const prototype = Object.getPrototypeOf(instance);
       const methodNames = Object.getOwnPropertyNames(prototype);
@@ -84,7 +86,9 @@ export class DiscordService implements OnModuleInit {
   }
 
   private registerCommandsAndEvents() {
-    const eventInstances = this.eventsProvider.getEvents().map(Event => new Event());
+    const eventInstances = this.eventsProvider
+      .getEvents()
+      .map((Event) => new Event());
     eventInstances.forEach((instance) => {
       const prototype = Object.getPrototypeOf(instance);
       const methodNames = Object.getOwnPropertyNames(prototype);

@@ -3,9 +3,9 @@ import { PingCommand } from './fun/ping.command';
 
 @Injectable()
 export class CommandsProvider {
-    private readonly commands = [PingCommand];
+  private readonly commands = [PingCommand];
 
-    getCommands() {
-        return this.commands;
-    }
+  getCommands() {
+    return this.commands;
+  }
 }
