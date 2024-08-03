@@ -18,6 +18,7 @@ services:
       - BOT_TOKEN=${BOT_TOKEN}
       - GUILD_ID=${GUILD_ID}
       - CHANNEL_ID=${CHANNEL_ID}
+      - CLIENT_ID=${CLIENT_ID}
       
     restart: on-failure
     command: sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start:prod; else npm run start:dev; fi"
