@@ -1,33 +1,43 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { Client, GatewayIntentBits } from 'discord.js';
-import { ConfigService, ConfigType } from '@nestjs/config';
+import { Injectable, OnModuleInit, Inject } from '@nestjs/common';
+import { ConfigType } from '@nestjs/config';
+import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { CustomLogger } from 'src/common/logger/custom-logger.service';
 import configuration from '@config/configuration';
+import { CommandService } from './commands.service';
+import { EventsService } from './event.service';
 
 @Injectable()
 export class DiscordService implements OnModuleInit {
-  private client: Client;
+  private readonly client: Client;
 
   constructor(
     @Inject(configuration.KEY)
     private readonly config: ConfigType<typeof configuration>,
-    private readonly logger: CustomLogger
+    private readonly logger: CustomLogger,
+    private readonly commandService: CommandService,
+    private readonly eventService: EventsService,
   ) {
-    this.logger.setContext(DiscordService.name);
     this.client = new Client({
-      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
+      intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildModeration,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
+      ],
     });
+    this.logger.setContext(DiscordService.name);
   }
 
   async onModuleInit() {
-    this.client.once('ready', () => {
-      this.logger.log(`Logged in as ${this.client.user.tag}!`);
-    });
+    this.commandService.setClient(this.client);
+    this.eventService.setClient(this.client);
+    this.init();
+  }
 
-    this.client.on('messageCreate', (message) => {
-      if (message.content === '!ping') {
-        message.channel.send('Pong!');
-      }
+  async init() {
+    this.client.on(Events.ClientReady, async () => {
+      this.logger.log(`Logged in as ${this.client.user.tag}`);
     });
 
     await this.client.login(this.config.discord.token);
