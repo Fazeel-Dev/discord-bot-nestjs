@@ -6,9 +6,7 @@ import { commandStore } from '../commands.store';
 export const SlashCommand: EventInterface = {
   name: Events.InteractionCreate,
   once: false,
-  async execute(
-    interaction: Interaction,
-  ) {
+  async execute(interaction: Interaction) {
     const logger = new CustomLogger('SlashCommand');
 
     if (!interaction.isCommand() || !interaction.isChatInputCommand()) return;

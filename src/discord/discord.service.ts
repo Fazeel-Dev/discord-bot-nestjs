@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit, Inject } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { Client, Events, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { CustomLogger } from 'src/common/logger/custom-logger.service';
 import configuration from '@config/configuration';
 import { CommandService } from './commands.service';

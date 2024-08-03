@@ -16,7 +16,7 @@ export class CommandService implements OnModuleInit {
   constructor(
     @Inject(configuration.KEY)
     private readonly config: ConfigType<typeof configuration>,
-    private readonly logger: CustomLogger
+    private readonly logger: CustomLogger,
   ) {
     this.rest = new REST({ version: '10' }).setToken(this.config.discord.token);
     this.logger.setContext(CommandService.name);
@@ -70,18 +70,23 @@ export class CommandService implements OnModuleInit {
   }
 
   private async registerCommands() {
-    const commandsArray = Array.from(commandStore.values()).map(command =>
-      command.data.toJSON()
+    const commandsArray = Array.from(commandStore.values()).map((command) =>
+      command.data.toJSON(),
     );
 
     try {
       // Register commands for a specific guild (for development/testing)
-        await this.rest.put(
-          Routes.applicationGuildCommands(this.config.discord.clientId, this.config.discord.guildId),
-          { body: commandsArray },
-        );
-        this.logger.log('Successfully registered application commands for guild.');
-      } catch (error) {
+      await this.rest.put(
+        Routes.applicationGuildCommands(
+          this.config.discord.clientId,
+          this.config.discord.guildId,
+        ),
+        { body: commandsArray },
+      );
+      this.logger.log(
+        'Successfully registered application commands for guild.',
+      );
+    } catch (error) {
       this.logger.error('Failed to register application commands:', error);
     }
   }
