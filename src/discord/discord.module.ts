@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import { DiscordService } from './discord.service';
 import { CommonModule } from 'src/common/common.module';
+import { DiscordService } from './discord.service';
+import { EventsModule } from './events/events.module';
+import { CommandsModule } from './commands/commands.module';
+import { CommandsProvider } from './commands/commands.provider';
+import { EventsProvider } from './events/events.provider';
 
 @Module({
-  imports:[CommonModule],
-  providers: [DiscordService]
+  imports: [
+    CommandsModule,
+    EventsModule,
+    CommonModule
+  ],
+  providers: [DiscordService],
+  exports: [DiscordService],
 })
 export class DiscordModule {}

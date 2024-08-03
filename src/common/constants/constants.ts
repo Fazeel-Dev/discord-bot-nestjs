@@ -22,3 +22,11 @@ export const CONTENT_TYPE = {
   JSON: 'application/json',
   FORM_URL_ENCODED: 'application/x-www-form-urlencoded',
 };
+
+export const COMMAND_METADATA = 'COMMAND_METADATA';
+
+export const COMMAND_PROVIDERS = 'COMMAND_PROVIDERS';
+
+export const EVENT_METADATA = 'EVENT_METADATA';
+
+export const EVENT_PROVIDERS = 'EVENT_PROVIDERS';
