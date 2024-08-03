@@ -18,5 +18,5 @@ export const ERROR_CODES = {
   FORBIDDEN: {
     statusCode: 1005,
     message: 'This request cannot be fulfilled',
-  }
+  },
 };

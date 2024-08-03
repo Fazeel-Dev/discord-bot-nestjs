@@ -1,10 +1,10 @@
-import { Module } from "@nestjs/common";
-import { CustomLoggerModule } from "./logger/custom-logger.module";
+import { Module } from '@nestjs/common';
+import { CustomLoggerModule } from './logger/custom-logger.module';
 
 const commonModules = [CustomLoggerModule];
 
 @Module({
-    imports: commonModules,
-    exports: commonModules,
+  imports: commonModules,
+  exports: commonModules,
 })
-export class CommonModule { }
+export class CommonModule {}
