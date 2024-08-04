@@ -54,3 +54,7 @@ jobs:
       with:
         name: codeql-sarif
         path: ./**/*.sarif
+
+    - name: Output analysis logs
+      if: ${{ always() }}
+      run: cat ${{ steps.analyze.outputs.results-file }}
